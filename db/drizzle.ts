@@ -1,9 +1,8 @@
 import { neon } from '@neondatabase/serverless'
 import { drizzle } from 'drizzle-orm/neon-http'
-import { config } from 'dotenv'
 
-config({ path: '.env.local' })
+const connection = process.env.NEXT_PUBLIC_DRIZZLE_DATABASE_URL as string
 
-const sql = neon(process.env.DRIZZLE_DATABASE_URL!)
+const sql = neon(connection)
 
 export const db = drizzle(sql)
